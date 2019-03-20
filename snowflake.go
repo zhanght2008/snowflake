@@ -18,11 +18,11 @@ var (
 
 	// Number of bits to use for Node
 	// Remember, you have a total 22 bits to share between Node/Step
-	NodeBits uint8 = 10
+	NodeBits uint8 = 4
 
 	// Number of bits to use for Step
 	// Remember, you have a total 22 bits to share between Node/Step
-	StepBits uint8 = 12
+	StepBits uint8 = 4
 
 	nodeMax   int64 = -1 ^ (-1 << NodeBits)
 	nodeMask  int64 = nodeMax << StepBits
@@ -95,7 +95,7 @@ func NewNode(node int64) (*Node, error) {
 	stepMask = -1 ^ (-1 << StepBits)
 	timeShift = NodeBits + StepBits
 	nodeShift = StepBits
-	
+
 	if node < 0 || node > nodeMax {
 		return nil, errors.New("Node number must be between 0 and " + strconv.FormatInt(nodeMax, 10))
 	}
